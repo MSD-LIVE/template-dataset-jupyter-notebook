@@ -21,6 +21,19 @@ The README.md file contains the instructions your user will see when they first 
 
 ## **Setp 3:** Edit the requirements.txt file
 
-## **Step 4:** Create your notebook files
+## **Step 4:** Create your *.ipynb notebook files
 * Your dataset's data will be mounted into the notebook at $HOME/data
 * All file paths used in the notebook must be relative to $HOME/data
+* The $HOME/data folder is READ-ONLY.
+
+# NOTES
+To open the README file in preview mode with a direct link from the "Explore Data" link, use this url:
+```
+https://jupyter.msdlive.org/user-redirect/lab/tree/README.ipynb
+```
+If you link directly to the README.md file, jupyter will NOT open it with the markdown preview editor.  It will open it with the text editor, and there is no way
+to pass a parameter to the URL to tell it which editor to use :(.  So our startup script will create the README.ipynb automatically using the md2nb tool:
+```bash
+pip install md2nb
+md2nb README.md
+```
