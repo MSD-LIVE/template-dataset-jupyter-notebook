@@ -16,7 +16,10 @@ The steps for creating these files are provided in the sections below.
 * Once created, make sure that you copy the repository URL and paste it into your dataset's upload form on the MSD-LIVE web site.
 
 ## **Step 2:** Edit the README.md file
-The README.md file contains the instructions your user will see when they first explore your data.  This file should summarize each notebook you provide and explain its purpose.
+The README.md file contains the instructions your user will see when they first explore your data.  This file should summarize each notebook you provide and explain its purpose. This file should instruct the users to use the terminal to pip install dependencies from the requirements.txt file:
+```
+pip install -r requirements.txt
+```
 
 
 ## **Setp 3:** Edit the requirements.txt file
