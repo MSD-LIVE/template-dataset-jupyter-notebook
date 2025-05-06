@@ -1,5 +1,5 @@
 # Creating Exploratory Notebooks For Your Dataset
-This repository will be used by MSD-LIVE's Jupyter Notebook Services to provide the default notebooks that will be available to a user when they click the "Explore Data" icon on your dataset's landing page.  These notebooks will enable users to visualize, interact with, and/or subset your data for subsequent download.  See [this help page](https://msdlive.org/sb/help/resources/quick-guides/jupyter-notebooks) descirbing this feature.
+This repository will be used by MSD-LIVE's Jupyter Notebook Services to provide the default notebooks that will be available to a user when they click the "Explore Data" icon on your dataset's landing page.  These notebooks will enable users to visualize, interact with, and/or subset your data for subsequent download.  See [this help page](https://msdlive.org/sb/help/resources/quick-guides/jupyter-notebooks) describing this feature.
 
 In order to work with MSD-LIVE's Jupyter Notebook services, you will need to configure the following three types of information:
 
