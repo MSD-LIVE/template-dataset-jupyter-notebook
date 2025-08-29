@@ -1,0 +1,19 @@
+name: Check README Placeholders
+
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+
+jobs:
+  placeholder-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if placeholders remain
+        run: |
+          set -e
+          if grep -Eq '\[(DATASET_NAME|SHORT_DATASET_DESCRIPTION|NOTEBOOK_1_NAME|NOTEBOOK_1_PURPOSE|PRIMARY_LIBS|CONTACT_EMAIL_OR_LINK|LICENSE_OR_TERMS)\]' README.md; then
+            echo "README.md still contains unreplaced placeholders."
+            exit 1
+          fi

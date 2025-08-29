@@ -1,0 +1,44 @@
+name: Convert Template README
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  swap-readme:
+    if: ${{ github.repository != 'MSD-LIVE/template-dataset-jupyter-notebook' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect and swap README
+        run: |
+          set -e
+          PLACEHOLDER_PATH=".github/README_DATASET_PLACEHOLDER.md"
+          if [ ! -f README.md ]; then
+            echo "No root README.md; skipping."
+            exit 0
+          fi
+            # Only swap if marker present
+          if ! grep -q 'TEMPLATE_ROOT_README' README.md; then
+            echo "Root README already customized (marker missing). Skipping."
+            exit 0
+          fi
+          if [ ! -f "$PLACEHOLDER_PATH" ]; then
+            echo "Placeholder $PLACEHOLDER_PATH missing; cannot swap."
+            exit 0
+          fi
+          echo "Swapping template README with dataset placeholder from $PLACEHOLDER_PATH"
+          mv README.md README_TEMPLATE_REPO.md.backup
+          cp "$PLACEHOLDER_PATH" README.md
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add README.md README_TEMPLATE_REPO.md.backup
+          git commit -m "chore: swap template README with dataset placeholder" || echo "No changes to commit."
+
+      - name: Warn about placeholders (log only)
+        run: |
+          if grep -Rq '\[DATASET_NAME\]' README.md; then
+            echo "::notice title=Placeholders Detected::Edit README.md to replace bracketed placeholders."
+          fi
