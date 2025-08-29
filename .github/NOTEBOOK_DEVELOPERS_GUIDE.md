@@ -36,11 +36,12 @@ Subsequent cells: imports, data listing, examples.
 ## Automatic README Swap
 - Source placeholder: .github/README_DATASET_PLACEHOLDER.md
 - Swap happens only if ALL are true:
-  1. Push is the initial commit (repository commit count == 1)
-  2. Local root README.md still contains the TEMPLATE_ROOT_README marker
-  3. Local root README.md is byte-for-byte identical to the template repository's current root README.md (verified via sha256 hash)
+  1. Initial commit (commit count == 1)
+  2. Root README contains TEMPLATE_ROOT_README marker
+  3. Root README matches upstream template README exactly (hash compare)
+  4. Workflow has write permission to repo contents (permissions: contents: write)
 
-Disable by removing the marker or the workflow file.
+If write permission is removed, the workflow will log the swap attempt but cannot push.
 
 ## Optional CI Placeholder Check
 Add a workflow that greps for bracketed placeholders and fails if found.

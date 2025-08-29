@@ -1,4 +1,6 @@
 name: Convert Template README
+permissions:
+  contents: write   # Needed so the workflow can push the swapped README
 
 on:
   push:
@@ -56,7 +58,6 @@ jobs:
             echo "No root README.md; skipping."
             exit 0
           fi
-          # Only swap if marker present
           if ! grep -q 'TEMPLATE_ROOT_README' README.md; then
             echo "Root README already customized (marker missing). Skipping."
             exit 0
@@ -69,7 +70,10 @@ jobs:
           cp "$PLACEHOLDER_PATH" README.md
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git commit -m "chore: swap template README with dataset placeholder" || echo "No changes to commit."
+          git add README.md || true
+          git diff --cached --quiet && { echo "No staged changes (possibly identical placeholder)"; exit 0; }
+          git commit -m "chore: swap template README with dataset placeholder"
+          git push
       - name: Warn about placeholders (log only)
         if: steps.init.outputs.initial == 'true' && steps.templatecmp.outputs.match == 'true'
         run: |
