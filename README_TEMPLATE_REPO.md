@@ -1,6 +1,6 @@
 # MSD-LIVE Dataset Notebook Template (Template Repository)
 
-This is the SOURCE template. When you click “Use this template” GitHub creates a **dataset repository** copy.  
+This is the SOURCE template. When you click “Use this template” GitHub creates a **dataset notebook repository** copy.  
 That new repository should present a dataset-focused README to downstream users.
 
 Files in this template:
@@ -13,7 +13,7 @@ Files in this template:
 Automation:
 - .github/workflows/convert-template-readme.yml swaps README on first push if marker comment present.
 
-Next Steps After Generating Dataset Repository:
+Next Steps After Generating dataset notebook repository:
 1. Check that README.md now shows dataset placeholders (or copy from README_DATASET_PLACEHOLDER.md manually).
 2. Fill placeholders, remove comments.
 3. Customize notebooks / dependencies.

@@ -1,16 +1,16 @@
 # Dataset Notebook Template – Dataset Author Guide
 
-Audience: dataset authors / repository maintainers of a dataset repository derived from the template.  
+Audience: dataset authors / repository maintainers of a dataset notebook repository derived from the template.  
 Downstream data users only read the root README.md (after swap).
 
 ## Terminology
 - Template repository: the original upstream template.
-- Dataset repository: your new repo created from the template.
+- dataset notebook repository: your new repo created from the template.
 - Dataset author / maintainer: you.
 - Downstream data users: people launching notebooks.
 
 ## Recommended Workflow
-1. Create dataset repository from template.
+1. Create dataset notebook repository from template.
 2. First push triggers README swap (if template README unmodified).
 3. Edit README.md (copied from placeholder) to replace placeholders.
 4. Add / adapt notebooks and dependencies.

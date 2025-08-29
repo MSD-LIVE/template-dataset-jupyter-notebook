@@ -11,7 +11,7 @@ See Notebook_Developers_README.md for guidance.
 # MSD-LIVE Dataset Notebook Template
 
 This repository is a GitHub Template used to create per-dataset notebook repositories.
-After you click “Use this template” the resulting dataset repository will (on first push)
+After you click “Use this template” the resulting dataset notebook repository will (on first push)
 swap this README for an end‑user dataset README (if you have not edited it yet).
 
 ## What This Template Provides
