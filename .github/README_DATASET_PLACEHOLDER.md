@@ -35,5 +35,8 @@ Write outputs to your home directory (~/) or /tmp (dataset directory is read‑o
 ## Support / Contact
 Questions: [CONTACT_EMAIL_OR_LINK]
 
+## General Help
+See [this documentation](https://dev.msdlive.org/dataset-notebooks) 
+
 ## License / Terms
 [LICENSE_OR_TERMS]
