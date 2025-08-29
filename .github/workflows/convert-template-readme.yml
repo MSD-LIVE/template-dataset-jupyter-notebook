@@ -11,8 +11,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0   # ensure we can count commits
+      - name: Determine if initial commit
+        id: init
+        run: |
+          COUNT=$(git rev-list --count HEAD)
+          echo "Commit count: $COUNT"
+          if [ "$COUNT" -eq 1 ]; then
+            echo "initial=true" >> $GITHUB_OUTPUT
+          else
+            echo "initial=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Compare README with template upstream
+        if: steps.init.outputs.initial == 'true'
+        id: templatecmp
+        run: |
+          set -e
+          TEMPLATE_URL="https://raw.githubusercontent.com/MSD-LIVE/template-dataset-jupyter-notebook/main/README.md"
+          if curl -fsSL "$TEMPLATE_URL" -o /tmp/template_README.md; then
+            local_hash=$(sha256sum README.md | awk '{print $1}')
+            template_hash=$(sha256sum /tmp/template_README.md | awk '{print $1}')
+            echo "Local README hash:    $local_hash"
+            echo "Template README hash: $template_hash"
+            echo "local_hash=$local_hash" >> $GITHUB_OUTPUT
+            echo "template_hash=$template_hash" >> $GITHUB_OUTPUT
+            if [ "$local_hash" = "$template_hash" ]; then
+              echo "README files match exactly."
+              echo "match=true" >> $GITHUB_OUTPUT
+            else
+              echo "README differs from template; will not auto-swap."
+              echo "match=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "Could not download template README; allowing swap (network fallback)."
+            echo "match=true" >> $GITHUB_OUTPUT
+          fi
       - name: Detect and swap README
+        if: steps.init.outputs.initial == 'true' && steps.templatecmp.outputs.match == 'true'
         run: |
           set -e
           PLACEHOLDER_PATH=".github/README_DATASET_PLACEHOLDER.md"
@@ -20,7 +56,7 @@ jobs:
             echo "No root README.md; skipping."
             exit 0
           fi
-            # Only swap if marker present
+          # Only swap if marker present
           if ! grep -q 'TEMPLATE_ROOT_README' README.md; then
             echo "Root README already customized (marker missing). Skipping."
             exit 0
@@ -29,15 +65,14 @@ jobs:
             echo "Placeholder $PLACEHOLDER_PATH missing; cannot swap."
             exit 0
           fi
-          echo "Swapping template README with dataset placeholder from $PLACEHOLDER_PATH"
-          mv README.md README_TEMPLATE_REPO.md.backup
+          echo "Initial commit & README matches template: performing swap."
           cp "$PLACEHOLDER_PATH" README.md
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add README.md README_TEMPLATE_REPO.md.backup
           git commit -m "chore: swap template README with dataset placeholder" || echo "No changes to commit."
-
       - name: Warn about placeholders (log only)
+        if: steps.init.outputs.initial == 'true' && steps.templatecmp.outputs.match == 'true'
         run: |
           if grep -Rq '\[DATASET_NAME\]' README.md; then
             echo "::notice title=Placeholders Detected::Edit README.md to replace bracketed placeholders."

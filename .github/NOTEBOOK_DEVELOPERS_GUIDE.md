@@ -35,7 +35,10 @@ Subsequent cells: imports, data listing, examples.
 
 ## Automatic README Swap
 - Source placeholder: .github/README_DATASET_PLACEHOLDER.md
-- Trigger: convert-template-readme workflow if TEMPLATE_ROOT_README marker present.
+- Swap happens only if ALL are true:
+  1. Push is the initial commit (repository commit count == 1)
+  2. Local root README.md still contains the TEMPLATE_ROOT_README marker
+  3. Local root README.md is byte-for-byte identical to the template repository's current root README.md (verified via sha256 hash)
 
 Disable by removing the marker or the workflow file.
 
