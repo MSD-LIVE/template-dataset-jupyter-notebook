@@ -69,7 +69,6 @@ jobs:
           cp "$PLACEHOLDER_PATH" README.md
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add README.md README_TEMPLATE_REPO.md.backup
           git commit -m "chore: swap template README with dataset placeholder" || echo "No changes to commit."
       - name: Warn about placeholders (log only)
         if: steps.init.outputs.initial == 'true' && steps.templatecmp.outputs.match == 'true'

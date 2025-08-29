@@ -29,9 +29,7 @@ swap this README for an end‑user dataset README (if you have not edited it yet
 2. On the first push, if THIS README:
    - Still contains TEMPLATE_ROOT_README marker, AND
    - Matches the upstream template README content exactly, THEN
-   the workflow:
-   - Backs up README.md to README_TEMPLATE_REPO.md.backup
-   - Copies .github/README_DATASET_PLACEHOLDER.md to README.md
+   the workflow copies .github/README_DATASET_PLACEHOLDER.md to README.md
 3. You then customize placeholders in the new README.
 
 If you prefer to keep this template overview visible in the new repo, remove the marker comment.
