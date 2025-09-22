@@ -1,37 +1,39 @@
-# MSD-LIVE Dataset Notebook Template
+# Exploring Dataset {{ DATASET_NAME }}
 
-This repository is a GitHub Template used to create per-dataset notebook repositories.
-After you click “Use this template” the resulting dataset notebook repository will 
-swap this README for an end‑user dataset README (if you have not edited it yet).
+> ⚠️ **REMINDER: Replace all `{{ }}` placeholders before publishing.**
 
-## What This Template Provides
-- Example notebooks: example_python.ipynb, example_r.ipynb, example_julia.ipynb
-- Author guide: NOTEBOOK_DEVELOPERS_GUIDE.md
-- Automated README swap workflow
-- Pattern for dependency installation & DATA_DIR usage
+> 💡 **Note for Authors:**  
+> This README is only a suggested template.  
+> You are free to organize your notebooks and descriptions in the way that best fits your dataset.
 
-## Files That Will Move / Be Swapped
-- .github/README_DATASET_PLACEHOLDER.md -> becomes README.md in new repos (if marker intact)
+{{ Provide a description of your dataset and relevant usage instructions. }}
 
-## How the Swap Works
-1. You generate a new repository from this template.
-2. On the first push, if THIS README:
-   - Still contains TEMPLATE_ROOT_README marker, AND
-   - Matches the upstream template README content exactly, THEN
-   the workflow copies .github/README_DATASET_PLACEHOLDER.md to README.md
-3. You then customize placeholders in the new README.
+## Available Notebooks
 
-If you prefer to keep this template overview visible in the new repo, remove the marker comment.
+- **{{ NOTEBOOK_1_NAME }}.ipynb** — {{ Describe Notebook 1. }}
+- **{{ NOTEBOOK_2_NAME }}.ipynb** — {{ Describe Notebook 2. }}
 
-## Quick Start (For Template Users)
-1. Generate new repository from template.
-2. Push (or manually copy the placeholder README if you disabled the workflow).
-3. Edit README.md placeholders.
-4. Customize notebooks & requirements.
-5. Commit and ensure no placeholder tokens remain.
+## Dataset Organization
 
-## DATA_DIR Convention
-Dataset files mount read‑only at $DATA_DIR (also /data symlink). All relative paths in notebooks should use DATA_DIR.
+{{ Describe how your dataset is organized and any naming conventions. }}
+
+## Quick Start
+
+1. Open a notebook.
+2. Run the first cell (install dependencies).
+3. Run all cells (create default plots/analytics/subsets).
+4. Edit and rerun cells as needed.
+
+## Help
+
+- If you are new to Jupyter Notebooks, please read the **[Jupyter Getting Started Guide](https://jupyterlab.readthedocs.io/en/stable/)**
+- See **[MSD-LIVE Notebook Help](https://dev.msdlive.org/dataset-notebooks)** for usage and creation guidelines.
 
 ## Support
-See [this documentation](https://dev.msdlive.org/dataset-notebooks) or contact the MSD-LIVE team at info@msdlive.org.
+
+- Dataset-specific issues: {{ CONTACT_EMAIL_OR_LINK }}
+- Platform issues: [MSD-LIVE support](mailto:info@msdlive.org)
+
+## License / Terms
+
+{{ LICENSE_OR_TERMS }}
